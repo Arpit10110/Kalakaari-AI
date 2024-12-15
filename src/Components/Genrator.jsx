@@ -1,0 +1,128 @@
+"use client"
+import React,{useState} from 'react'
+import axios from 'axios'
+import Dialog from '@mui/material/Dialog';
+import Slide from '@mui/material/Slide';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Image from 'next/image';
+import Loader from "../assets/loading.gif"
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+const Genrator = () => {
+    const [imageSrc, setImageSrc] = useState(null);
+    const [prompt,SetPrompt] =useState("");
+    const [open, setOpen] = useState(false);
+    const [IsLoading,SetIsLoading] = useState(true);
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+    const query = async () => {
+        try {
+        handleClickOpen();
+        SetIsLoading(true)
+        const response = await fetch("https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image",{
+            headers: {
+                Authorization: "Bearer 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",
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({ inputs: prompt }),
+            }
+        );
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+        console.log(imageUrl);
+        setImageSrc(imageUrl);
+        SetIsLoading(false)
+        SetPrompt("");
+        } catch (error) {
+        console.error("Error fetching the image:", error);
+        }
+    };
+
+
+
+    const generateimage= (e)=>{
+        e.preventDefault();
+        query();
+    }
+
+    
+  return (
+    <>
+    <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+        className='bg-[#0B0322]'
+      >
+        <div className='w-full bg-[#0B0322] text-white h-full' >
+            <div className='pt-[2rem] pr-[2rem] flex justify-end'>
+                <button onClick={handleClose} className='bg-red-600 px-[0.5rem] py-[0.2rem] rounded-[5px]  text-[1.2rem] ' >Close</button>
+            </div>
+           <div className='pt-[3rem] flex justify-around'>
+            {
+                IsLoading ? 
+                <div className='w-[40%] h-[70vh] flex flex-col gap-[2rem]' >
+                  <div className='w-full h-[70vh] flex flex-col justify-center items-center bg-gray-800 rounded-[10px] '>
+                  <Image src={Loader} alt='Loading...'  className='w-[40%]'  />
+                  <h2 className='text-[1.5rem]' >Your image is being Generated...</h2>
+                  </div>
+                </div>:
+                <div className='w-[40%] h-[65vh] flex flex-col gap-[2rem]' >
+                        <img className='w-full h-[65vh] object-cover rounded-[10px]' src={imageSrc} alt="Generated Image" />
+                     <a href={imageSrc} download="generated-image">
+                    <button className='bg-purple-900 w-[90%] m-auto py-[0.3rem] rounded-[10px] text-[1.2rem]' >Download Now</button>
+                    </a>
+
+                </div>
+            }
+                <div className='w-[50%] flex flex-col gap-[3rem] items-center justify-center '>
+                    <h1 className='text-[2rem] text-center'>Follow Our Social Media</h1>
+                    <div className='flex w-[80%]  justify-around items-start'>
+                        <a href="https://www.facebook.com/arpit.agrahari.5">
+                            <FacebookIcon className='!text-[3rem]'/>
+                        </a>
+                        <a href="https://www.instagram.com/___arpit_._/">
+                            <InstagramIcon className='!text-[3rem]'/>
+                        </a>
+                        <a href="https://github.com/Arpit10110">
+                            <GitHubIcon className='!text-[3rem]'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/arpit-agrahari-54aa192a1/">
+                            <LinkedInIcon className='!text-[3rem]'/>
+                        </a>
+                    </div>
+                </div>
+           </div>
+        </div>
+      </Dialog>
+      <div className='flex justify-around  ' >
+        <div className='w-[45%] pt-[8rem] flex flex-col gap-[1rem]'>
+            <h1 className='text-[4rem]  '>Create beautiful <span className='bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent'>AI Art</span></h1>
+            <h5 className='text-[1rem]' >Discover the Boundless Potential and impact of AI in Every Sphere of Life.</h5>
+            <form onSubmit={generateimage} className='bg-white w-[70%] mt-[1rem] flex justify-between rounded-[10px]' >
+                <input value={prompt} onChange={(e)=>{
+                    SetPrompt(e.target.value)
+                }} type="text" className='outline-none w-[95%] border-none p-[0.4rem] rounded-[10px] text-black text-[1.2rem] ' placeholder='Describe what you want' />
+                <button type='submit' className='bg-purple-800 px-[1rem] rounded-r-md text-[1.2rem] '>Generate</button>
+            </form>
+        </div>
+        <div className='w-[45%] pt-[7rem]  ' >
+            <video src="/sec1img1.mp4" className='rounded-[1rem]' loop={true}  muted={true} autoPlay={true} ></video>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Genrator
