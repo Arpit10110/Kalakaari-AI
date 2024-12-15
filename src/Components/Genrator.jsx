@@ -28,9 +28,9 @@ const Genrator = () => {
         try {
         handleClickOpen();
         SetIsLoading(true)
-        const response = await fetch("https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image",{
+        const response = await fetch("https://api-inference.huggingface.co/models/kothariyashhh/GenAi-Texttoimage",{
             headers: {
-                Authorization: "Bearer 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",
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN } ` ,
                 "Content-Type": "application/json",
             },
             method: "POST",
