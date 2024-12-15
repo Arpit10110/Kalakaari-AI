@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'below-sm': { 'max': '600px' }, // custom breakpoint for below 600px
+        'below-sm': { 'max': '650px' }, // custom breakpoint for below 600px
       },
     },
   },

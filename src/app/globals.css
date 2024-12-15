@@ -20,3 +20,10 @@ body {
   font-family: "Ubuntu", sans-serif;
   color: white;
 }
+
+
+@media only screen and (width<= 650px) {
+  html{
+      font-size: 70%;
+  }
+}

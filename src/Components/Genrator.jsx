@@ -69,24 +69,25 @@ const Genrator = () => {
             <div className='pt-[2rem] pr-[2rem] flex justify-end'>
                 <button onClick={handleClose} className='bg-red-600 px-[0.5rem] py-[0.2rem] rounded-[5px]  text-[1.2rem] ' >Close</button>
             </div>
-           <div className='pt-[3rem] flex justify-around'>
+           <div className='pt-[3rem] flex justify-around below-sm:flex-col below-sm:items-center below-sm:gap-[3rem] bg-[#0B0322] '>
             {
                 IsLoading ? 
-                <div className='w-[40%] h-[70vh] flex flex-col gap-[2rem]' >
+                <div className='w-[40%] h-[70vh] flex flex-col gap-[2rem] below-sm:w-[95%]' >
                   <div className='w-full h-[70vh] flex flex-col justify-center items-center bg-gray-800 rounded-[10px] '>
                   <Image src={Loader} alt='Loading...'  className='w-[40%]'  />
                   <h2 className='text-[1.5rem]' >Your image is being Generated...</h2>
                   </div>
                 </div>:
-                <div className='w-[40%] h-[65vh] flex flex-col gap-[2rem]' >
+                <div className='w-[40%] h-[65vh] flex flex-col gap-[2rem] below-sm:w-[95%] below-sm:h-auto' >
                         <img className='w-full h-[65vh] object-cover rounded-[10px]' src={imageSrc} alt="Generated Image" />
-                     <a href={imageSrc} download="generated-image">
+                     <a href={imageSrc} download="generated-image" className='flex items-center'>
                     <button className='bg-purple-900 w-[90%] m-auto py-[0.3rem] rounded-[10px] text-[1.2rem]' >Download Now</button>
                     </a>
 
                 </div>
             }
-                <div className='w-[50%] flex flex-col gap-[3rem] items-center justify-center '>
+                <div className='w-[50%] flex flex-col gap-[3rem] items-center justify-center
+                below-sm:w-[95%] below-sm:mb-[3rem] '>
                     <h1 className='text-[2rem] text-center'>Follow Our Social Media</h1>
                     <div className='flex w-[80%]  justify-around items-start'>
                         <a href="https://www.facebook.com/arpit.agrahari.5">
@@ -106,18 +107,18 @@ const Genrator = () => {
            </div>
         </div>
       </Dialog>
-      <div className='flex justify-around  ' >
-        <div className='w-[45%] pt-[8rem] flex flex-col gap-[1rem]'>
-            <h1 className='text-[4rem]  '>Create beautiful <span className='bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent'>AI Art</span></h1>
+      <div className='flex justify-around below-sm:flex-col below-sm:items-center ' >
+        <div className='w-[45%] pt-[8rem] flex flex-col gap-[1rem] below-sm:w-[100%] below-sm:items-center below-sm:pt-[5rem] '>
+            <h1 className='text-[4rem] below-sm:text-[3.5rem]  '>Create beautiful <span className='bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent'>AI Art</span></h1>
             <h5 className='text-[1rem]' >Discover the Boundless Potential and impact of AI in Every Sphere of Life.</h5>
-            <form onSubmit={generateimage} className='bg-white w-[70%] mt-[1rem] flex justify-between rounded-[10px]' >
+            <form onSubmit={generateimage} className='bg-white w-[70%] mt-[1rem] flex justify-between rounded-[10px] below-sm:w-[95%] ' >
                 <input value={prompt} onChange={(e)=>{
                     SetPrompt(e.target.value)
                 }} type="text" className='outline-none w-[95%] border-none p-[0.4rem] rounded-[10px] text-black text-[1.2rem] ' placeholder='Describe what you want' />
                 <button type='submit' className='bg-purple-800 px-[1rem] rounded-r-md text-[1.2rem] '>Generate</button>
             </form>
         </div>
-        <div className='w-[45%] pt-[7rem]  ' >
+        <div className='w-[45%] pt-[7rem] below-sm:w-[95%] below-sm:pt-[3rem]  ' >
             <video src="/sec1img1.mp4" className='rounded-[1rem]' loop={true}  muted={true} autoPlay={true} ></video>
         </div>
       </div>
