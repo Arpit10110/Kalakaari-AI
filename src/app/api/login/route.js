@@ -7,7 +7,7 @@ import { cookies } from "next/headers";
 
 export const POST = async(req)=>{
     try {
-
+        connectdb();
         const {email, password}= await req.json();
         let finduser = await UserModelA.findOne({email});
         console.log(finduser);
