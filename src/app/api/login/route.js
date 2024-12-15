@@ -9,7 +9,6 @@ export const POST = async(req)=>{
     try {
 
         const {email, password}= await req.json();
-
         let finduser = await UserModelA.findOne({email});
         console.log(finduser);
         if(finduser == null){
@@ -22,12 +21,18 @@ export const POST = async(req)=>{
         }
 
         const verifypass = await bcrypt.compare(password,finduser.password)
+        console.log(verifypass);
         if(verifypass == false){
             return(
                 NextResponse.json({
                     success: false,
                     message:"Wrong password"
-                })
+                },{
+                    headers: {
+                   'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+                   'Pragma': 'no-cache',
+                   'Expires': '0',
+                 }})
             )
         }
 
@@ -38,14 +43,8 @@ export const POST = async(req)=>{
         }
 
         const token = jwt.sign(createtocken,process.env.NEXT_PUBLIC_JET_TOKEN,{expiresIn:"1d"});
-
-        const getcookies = cookies();
-        await getcookies.set("token", token, {
-            httpOnly: true,
-            secure: true, // Ensure this is true for production
-            path: "/",
-            maxAge: 24 * 60 * 60, // 1 day
-          });
+        const getcookies = await cookies();
+        await getcookies.set("token", token);
 
         return(
             NextResponse.json({
@@ -54,15 +53,25 @@ export const POST = async(req)=>{
                     username:finduser.username,
                     email:finduser.email
                 }
-            })
+            },{
+                headers: {
+               'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+               'Pragma': 'no-cache',
+               'Expires': '0',
+             }})
         )
         
     } catch (error) {
         return(
             NextResponse.json({
                 success:false,
-                errror:error
-            })
+                errror:error.message
+            },{
+                headers: {
+               'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+               'Pragma': 'no-cache',
+               'Expires': '0',
+             }})
         )
     }
 }
