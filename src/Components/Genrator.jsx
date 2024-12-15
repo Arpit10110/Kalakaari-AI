@@ -108,7 +108,7 @@ const Genrator = () => {
         </div>
       </Dialog>
       <div className='flex justify-around below-sm:flex-col below-sm:items-center ' >
-        <div className='w-[45%] pt-[8rem] flex flex-col gap-[1rem] below-sm:w-[100%] below-sm:items-center below-sm:pt-[5rem] '>
+        <div className='w-[45%] pt-[8rem] flex flex-col gap-[1rem] below-sm:w-[100%] below-sm:items-center  '>
             <h1 className='text-[4rem] below-sm:text-[3.5rem]  '>Create beautiful <span className='bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent'>AI Art</span></h1>
             <h5 className='text-[1rem]' >Discover the Boundless Potential and impact of AI in Every Sphere of Life.</h5>
             <form onSubmit={generateimage} className='bg-white w-[70%] mt-[1rem] flex justify-between rounded-[10px] below-sm:w-[95%] ' >
