@@ -3,8 +3,8 @@ export const metadata = {
   title: "Kalakaari",
   description: "Create beautiful AI Art",
   icons:{
-    icon:"./favicon.ico",
-    apple:"./favicon.ico"
+    icon:"https://kalakaari-ai.vercel.app/favicon.ico",
+    apple:"https://kalakaari-ai.vercel.app/favicon.ico"
   }
 };
 

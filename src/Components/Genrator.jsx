@@ -114,7 +114,7 @@ const Genrator = () => {
             <form onSubmit={generateimage} className='bg-white w-[70%] mt-[1rem] flex justify-between rounded-[10px] below-sm:w-[95%] ' >
                 <input value={prompt} onChange={(e)=>{
                     SetPrompt(e.target.value)
-                }} type="text" className='outline-none w-[95%] border-none p-[0.4rem] rounded-[10px] text-black text-[1.2rem] ' placeholder='Describe what you want' />
+                }} type="text" className='outline-none w-[95%] border-none p-[0.4rem] rounded-[10px] text-black text-[1.2rem] ' placeholder='Describe what you want'required />
                 <button type='submit' className='bg-purple-800 px-[1rem] rounded-r-md text-[1.2rem] '>Generate</button>
             </form>
         </div>
