@@ -1,6 +1,4 @@
 "use client"
-import React,{useState} from 'react'
-import axios from 'axios'
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -9,6 +7,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Image from 'next/image';
 import Loader from "../assets/loading.gif"
+import { findcookies } from '@/utils/findcookie';
+import React,{useState} from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -43,16 +48,53 @@ const Genrator = () => {
         setImageSrc(imageUrl);
         SetIsLoading(false)
         SetPrompt("");
+
         } catch (error) {
         console.error("Error fetching the image:", error);
         }
     };
 
+    const reducetoken = async()=>{
+        try {
+            const {data} = await axios.get("/api/reducetoken");
+            console.log(data.success);
+            if(data.success){
+                query();
+            }else{
+                toast.error(data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-
-    const generateimage= (e)=>{
+    const generateimage= async(e)=>{
         e.preventDefault();
-        query();
+        const ans= await findcookies();
+        if(ans){
+           reducetoken();
+        }else{
+            toast.error('Please Login First', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        }
+
     }
 
     
@@ -122,6 +164,18 @@ const Genrator = () => {
             <video src="/sec1img1.mp4" className='rounded-[1rem]' loop={true}  muted={true} autoPlay={true} ></video>
         </div>
       </div>
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>
     </>
   )
 }
