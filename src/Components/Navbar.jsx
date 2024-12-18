@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="flex gap-[2rem] text-[1.2rem] items-center">
         <Link className="hover:text-purple-400" href={"/"}>Home</Link>
         <Link className="hover:text-purple-400" href={"/about"}>About</Link>
-        <Link className="hover:text-purple-400" href={"/contact"}>Contact</Link>
+        <Link className="hover:text-purple-400" href={"/pricing"}>Pricing</Link>
         {!loading && (
           userlogin ? (
             <Link href={"/profile"} className="hover:text-purple-400">Profile</Link>
