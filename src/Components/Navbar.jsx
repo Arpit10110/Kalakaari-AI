@@ -19,18 +19,18 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between px-[1.5rem] pt-[1.5rem] items-center">
-      <h2 className="text-[2rem] font-normal bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent">
+      <Link href={"/"} className="text-[2rem] font-normal bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent font-[Kablammo]">
         Kalakaari
-      </h2>
+      </Link>
       <div className="flex gap-[2rem] text-[1.2rem] items-center">
-        <Link className="hover:text-purple-400" href={"/"}>Home</Link>
-        <Link className="hover:text-purple-400" href={"/about"}>About</Link>
-        <Link className="hover:text-purple-400" href={"/pricing"}>Pricing</Link>
+        <Link className="hover:text-purple-400 hover:scale-[1.02] transition-all " href={"/"}>Home</Link>
+        <Link className="hover:text-purple-400 hover:scale-[1.02] transition-all " href={"/about"}>About</Link>
+        <Link className="hover:text-purple-400 hover:scale-[1.02] transition-all " href={"/pricing"}>Pricing</Link>
         {!loading && (
           userlogin ? (
-            <Link href={"/profile"} className="hover:text-purple-400">Profile</Link>
+            <Link href={"/profile"} className="hover:text-purple-400 hover:scale-[1.02] transition-all">Profile</Link>
           ) : (
-            <Link href={"/signup"} className="border-purple-300 border-[2px] px-[0.5rem] py-[0.2rem] rounded-[10px]">
+            <Link href={"/signup"} className="border-purple-300 border-[2px] px-[0.5rem] py-[0.2rem] rounded-[10px] hover:scale-[1.02] transition-all">
               SignUp
             </Link>
           )

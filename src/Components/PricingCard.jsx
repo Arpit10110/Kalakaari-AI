@@ -4,10 +4,10 @@ import React from 'react'
 const PricingCard = ({plan,fun}) => {
   return (
    <>
-    <div className='bg-[#3B0467] w-fit rounded-[5px] flex flex-col gap-[1rem]  py-[2rem] hover:scale-[1.02] transition-all cursor-pointer below-sm:w-[85%] '>
+    <div className='bg-[#3B0467] shadow-customa w-fit rounded-[5px] flex flex-col gap-[1rem]  py-[2rem] hover:scale-[1.02] transition-all cursor-pointer below-sm:w-[85%]  '>
         <h1 className='text-[2rem] border-b-[2px] border-gray-500 px-[1rem]'>{plan.plan}</h1>
         <h1  className='text-[2rem] px-[0.5rem]'>₹{plan.cost}</h1>
-        <div className='px-[0.5rem] justify-start flex flex-col gap-[1rem] text-[1.3rem] '>
+        <div className='px-[1.5rem] justify-start flex flex-col gap-[1rem] text-[1.3rem] '>
             <h2>✨{plan.benefit1}</h2>
             <h2>✨{plan.benefit2}</h2>
             <h2>✨{plan.benefit3}</h2>

@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import Navbar from '@/Components/Navbar';
+import Footer from '@/Components/Footer';
 const page = () => {
   const [hydrated, setHydrated] = useState(false);
 
@@ -12,7 +13,7 @@ const page = () => {
   return (
    <>
     <Navbar />
-      <div className='py-[3rem] px-[2rem] flex flex-col gap-[1.5rem] text-[1.1rem]' >
+      <div className='pt-[8rem] px-[2rem] flex flex-col gap-[2rem] text-[1.1rem] below-sm:pt-[5rem] below-sm:px-[1rem] ' >
      
           <h1 className='text-[2.5rem] w-fit underline decoration-dashed bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent'>About Kalakaari</h1>
           <h2 className='text-[1.5rem]'>Welcome to Kalakaari, where your imagination takes shape!</h2>
@@ -49,6 +50,7 @@ const page = () => {
           At Kalakaari, we’re redefining how art is made. Join us to experience the magic of combining human imagination with the power of AI. Your next masterpiece is just a prompt away!
           </p>
       </div>
+      <Footer/>
    </>
   )
 }

@@ -9,6 +9,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Script from 'next/script';
 import axios from 'axios';
+import Footer from '@/Components/Footer';
 const page = () => {
     const [open, setOpen] = useState(false);
     const handleClose = () => {
@@ -147,13 +148,14 @@ const page = () => {
       </Backdrop>
     <Navbar/>
     <Script src="https://checkout.razorpay.com/v1/checkout.js"  />
-    <div className='py-[2.5rem]'>
-        <h2 className='text-center cursor-default text-[2.5rem] below-sm:text-[2rem] ' ><span className="bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent">Choose a Plan</span>  that's right for You..</h2>
-        <div className='mt-[3rem] flex justify-center gap-[5rem] below-sm:flex-col below-sm:items-center below-sm:gap-[3rem]'>
+    <div className='pt-[5rem]'>
+        <h2 className='text-center cursor-default text-[2.5rem] below-sm:text-[2rem] font-semibold ' ><span className="bg-gradient-to-r from-fuchsia-500 to-indigo-400 bg-clip-text text-transparent">Choose a Plan</span>  that's right for You..</h2>
+        <div className='mt-[5rem] flex justify-center gap-[8rem] below-sm:flex-col below-sm:items-center below-sm:gap-[3rem]'>
             <PricingCard plan={basicPlan} fun={checkislogin} />
             <PricingCard plan={proPlan} fun={checkislogin} />
         </div>
     </div>
+    <Footer/>
     <ToastContainer
 position="top-right"
 autoClose={5000}

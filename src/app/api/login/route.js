@@ -44,7 +44,9 @@ export const POST = async(req)=>{
 
         const token = jwt.sign(createtocken,process.env.NEXT_PUBLIC_JET_TOKEN,{expiresIn:"1d"});
         const getcookies = await cookies();
-        await getcookies.set("token", token);
+        await getcookies.set("token", token,{
+            maxAge: 24 * 60 * 60,
+        });
 
         return(
             NextResponse.json({
