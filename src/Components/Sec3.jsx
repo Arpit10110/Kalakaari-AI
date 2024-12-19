@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Marquee from "react-fast-marquee";
 const Sec3 = () => {
    const data= [
@@ -9,7 +9,8 @@ const Sec3 = () => {
         { icon: "🌍 ", text: "Go beyond" }
       ]
       
-      
+
+
   return (
     <>
         <div className='mt-[9rem]'>
