@@ -5,6 +5,7 @@ import ex1 from "../assets/ex1.jpg"
 import ex2 from "../assets/ex2.jpg"
 import ex3 from "../assets/ex3.jpg"
 import ex4 from "../assets/ex4.jpg"
+import ex5 from "../assets/ex5.jpg"
 import Image from 'next/image';
 const Sec6 = () => {
 
@@ -28,6 +29,11 @@ const Sec6 = () => {
       id: 4,
       img:ex4,
       description: "A sleek sports car with a glossy red finish, parked on a hilltop under a breathtaking sunset sky, overlooking a glowing cityscape."
+    },
+    {
+      id: 5,
+      img:ex5,
+      description: "A silhouette of a jeep on an African savanna, with a fiery sunset behind a herd of elephants and giraffes grazing peacefully."
     }
   ];
 
