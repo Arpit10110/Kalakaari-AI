@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { GoogleGenAI, Modality } from "@google/genai";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -34,19 +35,25 @@ const Genrator = () => {
         try {
         handleClickOpen();
         SetIsLoading(true)
-        const response = await fetch("https://api-inference.huggingface.co/models/kothariyashhh/GenAi-Texttoimage",{
-            headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN } ` ,
-                "Content-Type": "application/json",
+        const ai = new GoogleGenAI({
+             apiKey: process.env.NEXT_PUBLIC_API_Gemni_Api_key,
+        });
+        const response = await ai.models.generateContent({
+            model: "gemini-2.0-flash-preview-image-generation",
+            contents: prompt,
+            config: {
+              responseModalities: [Modality.TEXT, Modality.IMAGE],
             },
-            method: "POST",
-            body: JSON.stringify({ inputs: prompt }),
+          });
+        // console.log(response)
+        for (const part of response.candidates[0].content.parts) {
+            if (part.inlineData) {
+              const buffer = Buffer.from(part.inlineData.data, 'base64');
+              const blob = new Blob([buffer], { type: part.inlineData.mimeType });
+              const image_url= URL.createObjectURL(blob);
+             setImageSrc(image_url);
             }
-        );
-        const blob = await response.blob();
-        const imageUrl = URL.createObjectURL(blob);
-        console.log(imageUrl);
-        setImageSrc(imageUrl);
+          }
         SetIsLoading(false)
         SetPrompt("");
 
